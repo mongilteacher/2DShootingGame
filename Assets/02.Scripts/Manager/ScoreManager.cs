@@ -13,9 +13,6 @@ public class ScoreManager : MonoBehaviour
     // - 현재 점수를 기억할 변수
     public int Score = 0;
 
-
-    public int A;
-
     // 최고 점수 관련 속성
     public Text BestScoreTextUI;
     public int BestScore = 0;
