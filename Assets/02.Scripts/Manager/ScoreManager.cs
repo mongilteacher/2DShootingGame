@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 
@@ -37,12 +38,52 @@ public class ScoreManager : MonoBehaviour
     public int BestScore = 0;
 
 
+    public int Score
+    {
+        get { return _score; }
+        set
+        {
+            // 유효성 검사
+            if (value < 0)
+            {
+                return;
+            }
+
+            _score = value;
+
+
+            // 목표: 스코어를 화면에 표시한다.
+            ScoreTextUI.text = $"점수: {_score}";
+
+
+            // 목표: 최고 점수를 갱신하고 UI에 표시하고 싶다.
+            // 1. 만약에 현재 점수가 최고 점수보다 크다면
+            if (_score > BestScore)
+            {
+                // 2. 최고 점수를 갱신하고,
+                BestScore = _score;
+
+
+                // 목표: 최고 점수를 저장
+                // 'PlayerPrefs' 클래스를 사용
+                // -> 데이터를 '키(Key)'와 '값(Value)' 형태로 저장하는 클래스
+                // 저장할 수 있는 데이터타입: int, float, string
+                // 타입별로 저장/로드가 가능한 Set/Get 메서드가 있다.
+                PlayerPrefs.SetInt("BestScore", BestScore);
+
+
+                // 3. UI에 표시한다.
+                BestScoreTextUI.text = $"최고 점수: {_score}";
+            }
+        }
+    }
+
 
 
 
 
     // ScoreManager가 점수를 관리하는 유일한 매니저(관리자)이므로 싱글톤을 적용하는게 편한다.
-    public static ScoreManager Instance; // ScoreManager 객체
+    public static ScoreManager Instance { get; private set; } // ScoreManager 객체
 
     private void Awake()
     {

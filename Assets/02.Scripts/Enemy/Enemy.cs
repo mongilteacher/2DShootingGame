@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum EnemyType // 적 타입 열거형
 {
@@ -204,7 +205,12 @@ public class Enemy : MonoBehaviour
 
 
         // 싱글톤 객체 참조로 변경 
-        ScoreManager.Instance.AddScore();
+        //int currentScore = ScoreManager.Instance.GetScore();
+        //ScoreManager.Instance.SetScore(currentScore + 1);
+
+        ScoreManager.Instance.Score += 1;
+
+
 
         //scoreManager.AddScore();
     }
