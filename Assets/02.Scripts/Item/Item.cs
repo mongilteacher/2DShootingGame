@@ -68,7 +68,7 @@ public class Item : MonoBehaviour
             if(MyType == 0) 
             {
                 Player player = otherCollider.GetComponent<Player>();
-                player.Health += 1;
+                player.AddHealth(1);
             }
             else if(MyType == 1) 
             {

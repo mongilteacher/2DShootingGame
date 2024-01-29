@@ -4,7 +4,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int Health = 10;
+    private int Health = 10;
+
+    public void AddHealth(int healthAmount)
+    {
+        if(healthAmount <= 0)
+        {
+            return;
+        }
+
+        Health += healthAmount;
+    }
+    public void DecreaseHealth(int healthAmount)
+    {
+        if (healthAmount <= 0)
+        {
+            return;
+        }
+
+        Health -= healthAmount;
+
+        // 체력이 적다면..
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public int GetHealth()
+    {
+        return Health;
+    }
+
 
     private void Start()
     {
