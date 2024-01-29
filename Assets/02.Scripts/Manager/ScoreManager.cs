@@ -84,6 +84,9 @@ public class ScoreManager : MonoBehaviour
 
     // ScoreManager가 점수를 관리하는 유일한 매니저(관리자)이므로 싱글톤을 적용하는게 편한다.
     public static ScoreManager Instance { get; private set; } // ScoreManager 객체
+    // 자동 구현 프로퍼티: 멤버 변수에 기본적인 Get, Set 작업만을 할 때 사용한다.
+    // private 접근 지정자를 이용하여 get, set 프로퍼티 접근 지정을 할 수 있다.
+
 
     private void Awake()
     {
