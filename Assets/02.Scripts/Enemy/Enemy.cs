@@ -93,9 +93,9 @@ public class Enemy : MonoBehaviour
             // 1. 각도를 구한다.
             // tan@ = y/x    -> @ = y/x*atan
             float radian = Mathf.Atan2(_dir.y, _dir.x);
-            Debug.Log(radian); // 호도법 -> 라디안 값
+            //Debug.Log(radian); // 호도법 -> 라디안 값
             float degree = radian * Mathf.Rad2Deg;
-            Debug.Log(degree);
+            //Debug.Log(degree);
 
             // 2. 각도에 맞게 회전한다.
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, degree + 90)); // 이미지 리소스에 맞게 90도를 뺀다.
@@ -126,6 +126,7 @@ public class Enemy : MonoBehaviour
         {
             // 플레이어 스크립트를 가져온다.
             Player player = collision.collider.GetComponent<Player>();
+            //Player player = collision.collider.GetComponent();
             // 플레이어 체력을 -= 1
             player.DecreaseHealth(1);
 
@@ -170,7 +171,8 @@ public class Enemy : MonoBehaviour
 
 
             // 총알 삭제
-            Destroy(collision.collider.gameObject);
+            //Destroy(collision.collider.gameObject);
+            collision.collider.gameObject.SetActive(false);
         }
     }
 
