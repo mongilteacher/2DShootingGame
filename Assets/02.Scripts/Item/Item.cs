@@ -48,13 +48,13 @@ public class Item : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("Collison Enter!");
+        Debug.Log("Collison Enter!");
     }
 
     // (다른 콜라이더에 의해) 트리거가 발동될 때 
     private void OnTriggerEnter2D(Collider2D otherCollider)
     {
-       // Debug.Log("트리거 시작!");
+        Debug.Log("트리거 시작!");
     }
 
 
@@ -90,7 +90,7 @@ public class Item : MonoBehaviour
     private void OnTriggerExit2D(Collider2D otherCollider)
     {
         _timer = 0f;
-        //Debug.Log("트리거 종료!");
+        Debug.Log("트리거 종료!");
     }
 
 }
