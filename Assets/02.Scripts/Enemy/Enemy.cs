@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
         // 충돌한 게임 오브젝트의 태그를 확인
         // Debug.Log(collision.collider.tag); // Player or Bullet
 
-        if (collision.collider.tag == "Player")
+        if (collision.collider.CompareTag("Player"))
         {
             // 플레이어 스크립트를 가져온다.
             Player player = collision.collider.GetComponent<Player>();
@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour
 
             Death();
         }
-        else if(collision.collider.tag == "Bullet")
+        else if(collision.collider.CompareTag("Bullet"))
         {
             Bullet bullet = collision.collider.GetComponent<Bullet>();
             /*if(bullet.BType == BulletType.Main)
