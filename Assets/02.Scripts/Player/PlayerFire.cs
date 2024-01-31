@@ -60,7 +60,6 @@ public class PlayerFire : MonoBehaviour
 
 
 
-
     [Header("총구들")]
     public List<GameObject> Muzzles;     // 총구들
     public List<GameObject> SubMuzzles;  // 보조 총구들
@@ -102,8 +101,16 @@ public class PlayerFire : MonoBehaviour
 
         BoomTimer -= Time.deltaTime;
 
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Boom();
+        }
+    }
+
+    private void Boom()
+    {
         // 붐 타이머가 0보다 같거나 작고 && 3번 버튼을 누르면
-        if(BoomTimer<= 0f && Input.GetKeyDown(KeyCode.Alpha3)) 
+        if (BoomTimer <= 0f)
         {
             // 붐 타이머 시간을 다시 쿨타임으로..
             BoomTimer = BOOM_COOL_TIME;
@@ -115,6 +122,8 @@ public class PlayerFire : MonoBehaviour
             boomObject.transform.position = new Vector2(0, 1.6f);
         }
     }
+
+
 
     private void CheckAutoMode()
     {
@@ -202,4 +211,24 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
+
+    // 총알 발사
+    public void OnClickXButton()
+    {
+        Debug.Log("X버튼이 클릭되었습니다.");
+    }
+
+    // 자동 공격 on/off
+    public void OnClickYButton()
+    {
+        Debug.Log("Y버튼이 클릭되었습니다.");
+    }
+
+    // 궁극기 사용
+    public void OnClickBButton()
+    {
+        Debug.Log("B버튼이 클릭되었습니다.");
+
+        Boom();
+    }
 }
