@@ -85,7 +85,21 @@ public class PlayerFire : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(Application.dataPath);
+        // 전처리 단계: 코드가 컴파일(해석) 되기 전에 미리 처리되는 단계
+        // 전처리문 코드를 이용해서 미리 처리되는 코드를 작성할 수 있다.
+        // C#의 모든 전처리 코드는 '#'으로 시작한다. (#if, #elif, #endif)
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        GameObject.Find("Joystick canvas XYBZ").SetActive(false);
+#endif
+        
+#if UNITY_ANDROID
+        Debug.Log("안드로이드 입니다.");
+#endif
+
+
+
+
         Timer = 0f;
         AutoMode = false;
     }
@@ -97,7 +111,12 @@ public class PlayerFire : MonoBehaviour
 
         CheckAutoMode();
 
-        Fire();
+        // 1. 타이머가 0보다 작은 상태에서 발사 버튼을 누르거나 자동 공격 모드면
+        bool ready = AutoMode || Input.GetKeyDown(KeyCode.Space);
+        if (ready)
+        {
+            Fire();
+        }
 
         BoomTimer -= Time.deltaTime;
 
@@ -141,9 +160,7 @@ public class PlayerFire : MonoBehaviour
 
     private void Fire()
     {
-        // 1. 타이머가 0보다 작은 상태에서 발사 버튼을 누르거나 자동 공격 모드면
-        bool ready = AutoMode || Input.GetKeyDown(KeyCode.Space);
-        if (Timer <= 0 && ready)
+        if (Timer <= 0)
         {
             FireSource.Play();
 
@@ -216,12 +233,16 @@ public class PlayerFire : MonoBehaviour
     public void OnClickXButton()
     {
         Debug.Log("X버튼이 클릭되었습니다.");
+
+        Fire();
     }
 
     // 자동 공격 on/off
     public void OnClickYButton()
     {
         Debug.Log("Y버튼이 클릭되었습니다.");
+
+        AutoMode = !AutoMode;
     }
 
     // 궁극기 사용
