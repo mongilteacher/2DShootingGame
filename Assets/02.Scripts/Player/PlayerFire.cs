@@ -98,8 +98,6 @@ public class PlayerFire : MonoBehaviour
 #endif
 
 
-
-
         Timer = 0f;
         AutoMode = false;
     }
